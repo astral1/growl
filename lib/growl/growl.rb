@@ -2,6 +2,7 @@
 module Growl
   
   BIN = 'growlnotify'
+  PACKAGED_BIN = File.expand_path(File.dirname(__FILE__) + '/../../bin/growlnotify')
   
   #--
   # Exceptions
@@ -52,14 +53,15 @@ module Growl
   # Execute +args+ against the binary.
   
   def self.exec *args
-    Kernel.system BIN, *args
+    bin = existing_install? ? BIN : PACKAGED_BIN
+    Kernel.system bin, *args
   end
   
   ##
   # Return the version triple of the binary.
   
   def self.version
-    @version ||= `#{BIN} --version`.split[1]
+    return existing_version || packaged_version
   end
   
   ##
@@ -67,6 +69,18 @@ module Growl
   
   def self.installed?
     version
+  end
+  
+  def self.existing_version
+    @existing_version ||= `#{BIN} --version`.split[1]
+  end
+  
+  def self.existing_install?
+    existing_version
+  end
+  
+  def self.packaged_version
+    @packaged_version ||= `#{PACKAGED_BIN} --version`.split[1]
   end
   
   ##
