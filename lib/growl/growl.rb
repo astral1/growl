@@ -59,12 +59,8 @@ module Growl
   
   def self.exec *args
     bin = existing_install? ? BIN : PACKAGED_BIN
-    
     bin += '.com' if is_windows?
-    
-    puts bin
-    puts *args
-    
+
     Kernel.system bin, *args
   end
   
