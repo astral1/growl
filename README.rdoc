@@ -56,29 +56,14 @@ methods, this removes the need to explicitly use :appIcon, :image, etc.
 
 == Features
 
-* Check availability with Growl.installed?
-* Check dependencies with Growl.version
+* Packaged with growlnotify (so notificatons always available)
+* Support for Growl for Windows
+* Wraps growlnotify to avoid dropped notificatons on OSX
 * Use images, icon paths, application icons, or file format icons
 * Sticky a notification making it appear until explicitly closed 
 * Set notification priority 
 * Convenience methods such as notify_ok, notify_warning, notify_error, and notify_info
 * Etc (consult growlnotify --help)
-
-== Installing growlnotify
-
-Visit http://growl.info/documentation.php for installation help. 
-
-== Known Issues
-
-It seems that growlnotify will essentially ignore or block excessive usage
-of the notifications at random. To prevent this you may need to do something like
-below if you are calling many in sequence:
-
-  notify 'Something'; sleep 0.2
-  notify_ok 'Updated'; sleep 0.2
-  notify_info 'You have new mail'; sleep 0.2
-  notify_warning 'Merged required'; sleep 0.2
-  notify_error 'Oh Noes!'; sleep 0.2
 
 == Contribute
 
