@@ -8,6 +8,7 @@ lib/growl/images/ok.png
 lib/growl/images/warning.png
 lib/growl/version.rb
 lib/growl/notify/growlnotify
+lib/growl/notify/growlnotify-original
 lib/growl/notify/growlnotify.com
 lib/growl.rb
 Manifest

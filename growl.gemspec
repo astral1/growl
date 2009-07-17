@@ -2,15 +2,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{growl}
-  s.version = "1.0.3"
+  s.version = "1.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["TJ Holowaychuk, Karl O'Keeffe"]
   s.date = %q{2009-07-17}
   s.description = %q{growlnotify bindings}
   s.email = %q{tj@vision-media.ca}
-  s.extra_rdoc_files = ["lib/growl/growl.rb", "lib/growl/images/error.png", "lib/growl/images/info.png", "lib/growl/images/ok.png", "lib/growl/images/warning.png", "lib/growl/version.rb", "lib/growl/notify/growlnotify", "lib/growl/notify/growlnotify.com", "lib/growl.rb", "README.rdoc", "tasks/docs.rake", "tasks/gemspec.rake", "tasks/spec.rake"]
-  s.files = ["examples/growl.rb", "growl.gemspec", "History.rdoc", "lib/growl/growl.rb", "lib/growl/images/error.png", "lib/growl/images/info.png", "lib/growl/images/ok.png", "lib/growl/images/warning.png", "lib/growl/version.rb", "lib/growl/notify/growlnotify", "lib/growl/notify/growlnotify.com", "lib/growl.rb", "Manifest", "Rakefile", "README.rdoc", "spec/fixtures/icon.icns", "spec/fixtures/image.png", "spec/growl_spec.rb", "spec/spec_helper.rb", "tasks/docs.rake", "tasks/gemspec.rake", "tasks/spec.rake"]
+  s.extra_rdoc_files = ["lib/growl/growl.rb", "lib/growl/images/error.png", "lib/growl/images/info.png", "lib/growl/images/ok.png", "lib/growl/images/warning.png", "lib/growl/version.rb", "lib/growl/notify/growlnotify", "lib/growl/notify/growlnotify-original", "lib/growl/notify/growlnotify.com", "lib/growl.rb", "README.rdoc", "tasks/docs.rake", "tasks/gemspec.rake", "tasks/spec.rake"]
+  s.files = ["examples/growl.rb", "growl.gemspec", "History.rdoc", "lib/growl/growl.rb", "lib/growl/images/error.png", "lib/growl/images/info.png", "lib/growl/images/ok.png", "lib/growl/images/warning.png", "lib/growl/version.rb", "lib/growl/notify/growlnotify", "lib/growl/notify/growlnotify-original", "lib/growl/notify/growlnotify.com", "lib/growl.rb", "Manifest", "Rakefile", "README.rdoc", "spec/fixtures/icon.icns", "spec/fixtures/image.png", "spec/growl_spec.rb", "spec/spec_helper.rb", "tasks/docs.rake", "tasks/gemspec.rake", "tasks/spec.rake"]
   s.homepage = %q{http://github.com/visionmedia/growl}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Growl", "--main", "README.rdoc"]
   s.require_paths = ["lib"]
