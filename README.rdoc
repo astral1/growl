@@ -54,7 +54,11 @@ methods, this removes the need to explicitly use :appIcon, :image, etc.
   notify 'Icns icon', :icon => 'path/to/icon.icns'
   notify 'Path extname icon', :icon => 'foo.rb' 
 
-Normalised icons only work on OSX. To support OSX and Windows always give a path to an image, e.g. 'path/to/image.png'
+Normalised icons only work on OSX. 
+
+To support OSX and Windows always give a path to an image, e.g. 
+
+  :image => 'path/to/image.png'
 
 == Features
 
