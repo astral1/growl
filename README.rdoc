@@ -54,6 +54,8 @@ methods, this removes the need to explicitly use :appIcon, :image, etc.
   notify 'Icns icon', :icon => 'path/to/icon.icns'
   notify 'Path extname icon', :icon => 'foo.rb' 
 
+Normalised icons only work on OSX. To support OSX and Windows always give a path to an image, e.g. 'path/to/image.png'
+
 == Features
 
 * Packaged with growlnotify (so notificatons always available)
@@ -64,6 +66,16 @@ methods, this removes the need to explicitly use :appIcon, :image, etc.
 * Set notification priority 
 * Convenience methods such as notify_ok, notify_warning, notify_error, and notify_info
 * Etc (consult growlnotify --help)
+
+== Known Issues
+
+Not all switches work on Windows. Unsupported switches are:
+
+  :iconpath
+  :appIcon
+  :icon
+  :udp
+  :crypt
 
 == Contribute
 
