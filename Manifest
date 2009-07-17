@@ -7,6 +7,8 @@ lib/growl/images/info.png
 lib/growl/images/ok.png
 lib/growl/images/warning.png
 lib/growl/version.rb
+lib/growl/notify/growlnotify
+lib/growl/notify/growlnotify.com
 lib/growl.rb
 Manifest
 Rakefile

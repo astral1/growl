@@ -6,7 +6,7 @@ require 'rake'
 require 'echoe'
 
 Echoe.new "growl", Growl::VERSION do |p|
-  p.author = "TJ Holowaychuk"
+  p.author = ["TJ Holowaychuk", "Karl O'Keeffe"]
   p.email = "tj@vision-media.ca"
   p.summary = "growlnotify bindings"
   p.url = "http://github.com/visionmedia/growl"

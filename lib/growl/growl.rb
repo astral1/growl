@@ -2,7 +2,7 @@
 module Growl
   
   BIN = 'growlnotify'
-  PACKAGED_BIN = File.expand_path(File.dirname(__FILE__) + '/../../bin/growlnotify')
+  PACKAGED_BIN = File.expand_path(File.dirname(__FILE__) + '/notify/growlnotify')
   
   #--
   # Exceptions
@@ -48,12 +48,23 @@ module Growl
     end
     module_function :"notify_#{type}"
   end
+
+  def self.is_windows?
+    processor, platform, *rest = RUBY_PLATFORM.split("-")
+    platform == 'mswin32'
+  end
   
   ##
   # Execute +args+ against the binary.
   
   def self.exec *args
     bin = existing_install? ? BIN : PACKAGED_BIN
+    
+    bin += '.com' if is_windows?
+    
+    puts bin
+    puts *args
+    
     Kernel.system bin, *args
   end
   
@@ -72,7 +83,7 @@ module Growl
   end
   
   def self.existing_version
-    @existing_version ||= `#{BIN} --version`.split[1]
+    @existing_version ||= `#{BIN} --version`.split[1] rescue false
   end
   
   def self.existing_install?
@@ -80,7 +91,7 @@ module Growl
   end
   
   def self.packaged_version
-    @packaged_version ||= `#{PACKAGED_BIN} --version`.split[1]
+    '0.0.0'
   end
   
   ##
@@ -147,16 +158,29 @@ module Growl
         end
       end
     end
+
+    def is_windows?
+      processor, platform, *rest = RUBY_PLATFORM.split("-")
+      platform == 'mswin32'
+    end
     
     ##
     # Run the notification, only --message is required.
     
     def run
       raise Error, 'message required' unless message
-      self.class.switches.each do |switch|
-        if send(:"#{switch}?")
-          args << "--#{switch}"
-          args << send(switch).to_s if send(switch) && !(TrueClass === send(switch))
+      self.class.switches.each do |name, win_name|
+        if send(:"#{name}?")
+          value = send(name).to_s if send(name) && !(TrueClass === send(name))
+          if is_windows?
+            next if win_name.nil?
+            
+            arg = is_windows? ? ( (win_name == :EMPTY) ? "" : "/#{win_name}:") : "--#{name}"
+            args << arg + value
+          else
+            args << "--#{name}"
+            args << value
+          end
         end
       end
       Growl.exec *args
@@ -175,9 +199,9 @@ module Growl
     #  @growl.sticky?         # => false
     #
     
-    def self.switch name
+    def self.switch name, win_name
       ivar = :"@#{name}"
-      (@switches ||= []) << name
+      (@switches ||= []) << [name, win_name]
       attr_accessor :"#{name}"
       define_method(:"#{name}?") { instance_variable_get(ivar) }
       define_method(:"#{name}!") { instance_variable_set(ivar, true) }
@@ -194,22 +218,31 @@ module Growl
     # Switches
     #++
     
-    switch :title
-    switch :message
-    switch :sticky
-    switch :name
-    switch :appIcon
-    switch :icon
-    switch :iconpath
-    switch :image
-    switch :priority
-    switch :identifier
-    switch :host
-    switch :password
-    switch :udp
-    switch :port
-    switch :auth
-    switch :crypt
+    switch :title,      :t
+    switch :sticky,     :s
+    switch :priority,   :p
+    switch :host,       :host
+    switch :password,   :pass
+    switch :port,       :port
+
+    switch :name,       :a
+    switch :message,    :EMPTY
+    switch :image,      :i
+    switch :identifier, :id
+
+    switch :iconpath,   nil
+    switch :appIcon,    nil
+    switch :icon,       nil
+
+    switch :udp,        nil
+    switch :auth,       :hash
+    switch :crypt,      nil
+    
+    #r
+    #n
+    #cu
+    #cc
+    #enc
 
   end
 
