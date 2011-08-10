@@ -50,7 +50,7 @@ module Growl
 
   def self.is_windows?
     processor, platform, *rest = RUBY_PLATFORM.split("-")
-    platform == 'mswin32'
+    platform == 'mswin32' || platform == 'mingw32'
   end
   
   ##
@@ -144,7 +144,7 @@ module Growl
 
     def is_windows?
       processor, platform, *rest = RUBY_PLATFORM.split("-")
-      platform == 'mswin32'
+	  platform == 'mswin32' || platform == 'mingw32'
     end
     
     ##
